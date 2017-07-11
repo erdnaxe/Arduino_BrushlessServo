@@ -2,6 +2,8 @@
 
 This is a library to control brushless DC motors via H-briges as servomotors.
 
+Please see the reference here : http://erdnaxe.github.io/brushlessservo-library/
+
 Contributions are welcome !
 
 == License ==
