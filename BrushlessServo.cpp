@@ -1,6 +1,6 @@
 // Brushless motor library
 // copyright Alexandre Iooss, 2017-2018
-// this code is public domain, enjoy!
+// Please see README.txt for license information
 
 #include "BrushlessServo.h"
 #include "Arduino.h"
