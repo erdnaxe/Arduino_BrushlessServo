@@ -48,7 +48,7 @@ void BrushlessServo::writeOffset(int offset) {
 
 void BrushlessServo::write(float degree) {
   int offset = degree/360.*1024;
-  write(offset);
+  writeOffset(offset);
 }
 
 
