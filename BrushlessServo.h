@@ -7,7 +7,9 @@
 
 #include "Arduino.h"
 
-#define PRECISION 1024
+#define PRECISION 1024  // nb of divisions of one revolution
+#define CYCLES 8  // dependent of the motor
+#define FLOAT_RESOLUTION 32767  // 32768-1 because 16 bits
 
 class BrushlessServo {
   public:

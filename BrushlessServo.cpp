@@ -23,7 +23,7 @@ void BrushlessServo::attach(int pin1, int pin2, int pin3) {
   // Generate sin table for faster control
   for (int i=0; i<PRECISION; i++) {
     float angle = i*2.*M_PI/(float)PRECISION;
-    _sinTable[i] = round((sin(angle)+1.)/2.*32767);  // 32768 because 16 bits
+    _sinTable[i] = round((sin(angle)+1.)/2.*FLOAT_RESOLUTION);  
   }
 }
 
@@ -40,14 +40,14 @@ void BrushlessServo::writeOffset(int offset) {
   int offset3 = (offset+(PRECISION*4/3))%PRECISION;
 
   // Set PWM
-  analogWrite(_pin1, _power * _sinTable[offset1]/32767.);
-  analogWrite(_pin2, _power * _sinTable[offset2]/32767.);
-  analogWrite(_pin3, _power * _sinTable[offset3]/32767.);
+  analogWrite(_pin1, _power*_sinTable[offset1]/FLOAT_RESOLUTION);
+  analogWrite(_pin2, _power*_sinTable[offset2]/FLOAT_RESOLUTION);
+  analogWrite(_pin3, _power*_sinTable[offset3]/FLOAT_RESOLUTION);
 }
 
 
 void BrushlessServo::write(float degree) {
-  int offset = degree/360.*1024;
+  int offset = degree*PRECISION*CYCLES/360;
   writeOffset(offset);
 }
 
