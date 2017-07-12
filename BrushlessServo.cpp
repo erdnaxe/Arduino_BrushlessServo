@@ -5,25 +5,30 @@
 #include "BrushlessServo.h"
 #include "Arduino.h"
 
+unsigned int BrushlessServo::sinTable[PRECISION];
+bool BrushlessServo::sinTableEmpty = true;
+
 
 BrushlessServo::BrushlessServo() {
-  _power = PWMRANGE;
 }
 
 
-void BrushlessServo::attach(int pin1, int pin2, int pin3) {
+void BrushlessServo::attach(int p1, int p2, int p3) {
   // Set output pins
-  _pin1 = pin1;
-  _pin2 = pin2;
-  _pin3 = pin3;
-  pinMode(_pin1, OUTPUT);
-  pinMode(_pin2, OUTPUT);
-  pinMode(_pin3, OUTPUT);
+  pin1 = p1;
+  pin2 = p2;
+  pin3 = p3;
+  pinMode(pin1, OUTPUT);
+  pinMode(pin2, OUTPUT);
+  pinMode(pin3, OUTPUT);
 
   // Generate sin table for faster control
-  for (int i=0; i<PRECISION; i++) {
-    float angle = i*2.*M_PI/(float)PRECISION;
-    _sinTable[i] = round((sin(angle)+1.)/2.*FLOAT_RESOLUTION);  
+  if (sinTableEmpty) {
+    for (int i=0; i<PRECISION; i++) {
+      float angle = i*2.*M_PI/(float)PRECISION;
+      sinTable[i] = round((sin(angle)+1.)/2.*FLOAT_RESOLUTION);
+    }
+    sinTableEmpty = false;
   }
 }
 
@@ -40,20 +45,24 @@ void BrushlessServo::writeOffset(int offset) {
   int offset3 = (offset+(PRECISION*4/3))%PRECISION;
 
   // Set PWM
-  analogWrite(_pin1, _power*_sinTable[offset1]/FLOAT_RESOLUTION);
-  analogWrite(_pin2, _power*_sinTable[offset2]/FLOAT_RESOLUTION);
-  analogWrite(_pin3, _power*_sinTable[offset3]/FLOAT_RESOLUTION);
+  analogWrite(pin1, power*sinTable[offset1]/FLOAT_RESOLUTION);
+  analogWrite(pin2, power*sinTable[offset2]/FLOAT_RESOLUTION);
+  analogWrite(pin3, power*sinTable[offset3]/FLOAT_RESOLUTION);
 }
 
 
 void BrushlessServo::write(float degree) {
-  int offset = degree*PRECISION*CYCLES/360;
+  int offset = degree*PRECISION*n_cycles/360;
   writeOffset(offset);
 }
 
 
-void BrushlessServo::setOutputPower(int power) {
-  _power = power*PWMRANGE/1024.;
+void BrushlessServo::setOutputPower(int p) {
+  power = p*PWMRANGE/1024.;
 }
 
+
+void BrushlessServo::setCycles(int n) {
+  n_cycles = n;
+}
 
