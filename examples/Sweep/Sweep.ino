@@ -9,7 +9,6 @@
 #include <BrushlessServo.h>
 
 BrushlessServo myservo;  // create servo object to control a brushless motor as a servo
-// twelve servo objects can be created on most boards
 
 int pos = 0;    // variable to store the servo position
 

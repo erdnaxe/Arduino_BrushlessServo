@@ -7,8 +7,12 @@
 
 #include "Arduino.h"
 
-#define PRECISION 1024  // nb of divisions of one revolution
+#define PRECISION 512  // nb of divisions of one revolution, 1024 is great but too much for an Arduino UNO
 #define FLOAT_RESOLUTION 32767  // 32768-1 because 16 bits
+
+#ifndef PWMRANGE  //PWMRANGE is defined on some microcontrollers such as ESP8266
+	#define PWMRANGE 255  // Default for ATMEGA328
+#endif
 
 class BrushlessServo {
   public:
