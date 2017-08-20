@@ -45,9 +45,9 @@ void BrushlessServo::writeOffset(int offset) {
   int offset3 = (offset+(PRECISION*4/3))%PRECISION;
 
   // Set PWM
-  analogWrite(pin1, power*sinTable[offset1]/FLOAT_RESOLUTION);
-  analogWrite(pin2, power*sinTable[offset2]/FLOAT_RESOLUTION);
-  analogWrite(pin3, power*sinTable[offset3]/FLOAT_RESOLUTION);
+  analogWrite(pin1, (float)power*sinTable[offset1]/FLOAT_RESOLUTION);
+  analogWrite(pin2, (float)power*sinTable[offset2]/FLOAT_RESOLUTION);
+  analogWrite(pin3, (float)power*sinTable[offset3]/FLOAT_RESOLUTION);
 }
 
 
@@ -58,7 +58,7 @@ void BrushlessServo::write(float degree) {
 
 
 void BrushlessServo::setOutputPower(int p) {
-  power = p*PWMRANGE/1024.;
+  power = p;
 }
 
 
