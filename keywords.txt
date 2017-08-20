@@ -1,0 +1,23 @@
+#######################################
+# Syntax Coloring Map BrushlessServo
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+BrushlessServo	KEYWORD1	BrushlessServo
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+attach	KEYWORD2
+write	KEYWORD2
+attached	KEYWORD2
+writeOffset	KEYWORD2
+setOutputPower	KEYWORD2
+setCycles	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

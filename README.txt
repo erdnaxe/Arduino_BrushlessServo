@@ -1,6 +1,6 @@
 = Brushless Servo Library for Arduino =
 
-This is a library to control brushless DC motors via H-briges as servomotors.
+This is a library to control brushless motors as servomotors without an ESC.
 
 Please see the reference here : http://erdnaxe.github.io/brushlessservo-library/
 
@@ -26,9 +26,4 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 == Download and Installation ==
 
-To download. click the DOWNLOAD ZIP button, rename the uncompressed folder BrushlessServo. 
-Check that the BLDCMotors folder contains BrushlessServo.cpp and BrushlessServo.h
-
-Place the BrushlessServo library folder your arduinosketchfolder/libraries/ folder. 
-You may need to create the libraries subfolder if its your first library. Restart the IDE.
-
+You can just search for BrushlessServo in Arduino IDE library manager then install.
