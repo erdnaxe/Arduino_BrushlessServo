@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-BrushlessServo	KEYWORD1	BrushlessServo
+BrushlessServo	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
